@@ -1,0 +1,29 @@
+# Blink Labs profile marker.
+#
+# This file opts the repository into central governance from
+# blinklabs-io/actions. The governance engine discovers repositories carrying
+# this marker and generates/reconciles the workflows for the named profile.
+#
+# See: https://github.com/blinklabs-io/actions (Auto-discovery section)
+
+# The governance profile to apply. `docker-standard` provides the shared shape
+# for a simple Docker image repository (conventional-commits, ci-docker,
+# publish, and issue housekeeping workflows).
+profile: docker-standard
+
+# Values substituted into the profile's workflow templates.
+vars:
+  # Image base name. The profile expands this into:
+  #   docker-image: blinklabs/<image>   (Docker Hub)
+  #   ghcr-image:   blinklabs-io/<image> (GHCR)
+  #   image-name:   blinklabs-io/<image> (CI)
+  image: template
+  # Short human-readable description used for the published image.
+  description: "Template Docker image — replace me"
+
+# Optional per-workflow overrides for genuinely special cases. Uses the same
+# schema as repos-config.yaml in blinklabs-io/actions. Remove if unused.
+# overrides:
+#   ci-docker.yml:
+#     params:
+#       image-name: "blinklabs-io/custom-name"
